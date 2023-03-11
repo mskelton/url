@@ -113,3 +113,9 @@ func TestMultiple(t *testing.T) {
 		assert.Equal(t, actual[1], b)
 	}
 }
+
+func TestUnpkgUrl(t *testing.T) {
+	url := "https://unpkg.com/@mskelton/observer@1.0.1/dist/index.js"
+	actual := ParseURLs(fmt.Sprintf("This is %s my url", url))
+	assertURLs(t, url, actual)
+}

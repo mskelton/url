@@ -10,13 +10,13 @@ import (
 
 func ParseURLs(s string) []string {
 	re := regexp.MustCompile(
-		`(https?|ftp):\/\/` +
-			`(\.?[a-zA-Z0-9_\-])+` +
-			`(\.[a-zA-Z]+)?` +
-			`(:[0-9]+)?` +
-			`(\.?[a-zA-Z0-9%_=~/+-]+)*` +
-			`(\?([.,]?[a-zA-Z0-9&%_=~+-])*)?` +
-			`(#[a-zA-Z0-9&%_=~+-]*)?`,
+		`(https?|ftp):\/\/` + // scheme
+			`(\.?[a-zA-Z0-9_\-])+` + // subdomain
+			`(\.[a-zA-Z]+)?` + // domain
+			`(:[0-9]+)?` + // port
+			`(\.?[a-zA-Z0-9%_=~/+\-@]+)*` + // path
+			`(\?([.,]?[a-zA-Z0-9&%_=~+\-@])*)?` + // query
+			`(#[a-zA-Z0-9&%_=~+\-@]*)?`, // fragment
 	)
 
 	return re.FindAllString(s, -1)
