@@ -8,7 +8,7 @@ You can install url by running the install script which will download
 the [latest release](https://github.com/mskelton/url/releases/latest).
 
 ```bash
-curl -LSfs https://mskelton.dev/url/install | sh
+curl -LSfs https://go.mskelton.dev/url/install | sh
 ```
 
 Or you can build from source.
