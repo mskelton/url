@@ -2,7 +2,7 @@
 
 set -eu
 
-package="urls"
+package="url"
 platforms=(
 	"windows/amd64"
 	"windows/arm64"
