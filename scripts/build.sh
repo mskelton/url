@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 set -eu
 
-package=url
+package="urls"
 platforms=(
 	"windows/amd64"
 	"windows/arm64"
@@ -15,30 +15,32 @@ platforms=(
 for platform in "${platforms[@]}"; do
 	echo "Building for $platform"
 
+	# shellcheck disable=SC2206
 	platform_split=(${platform//\// })
 	GOOS=${platform_split[0]}
 	GOARCH=${platform_split[1]}
 
 	bin=$package
-	if [ $GOOS = "windows" ]; then
+	if [ "$GOOS" = "windows" ]; then
 		bin+='.exe'
 	fi
 
 	# Build the binary
-	env GOOS=$GOOS GOARCH=$GOARCH go build -o $bin
+	env GOOS="$GOOS" GOARCH="$GOARCH" go build -o $bin
 
 	# Zip the binary
 	mkdir -p dist
 	output_name="$package-$GOOS-$GOARCH"
 
-	if [ $GOOS = "windows" ]; then
+	if [ "$GOOS" = "windows" ]; then
 		output_name="$output_name.zip"
-		7z a dist/$output_name $bin
+		7z a dist/"$output_name" $bin
 	else
 		output_name="$output_name.tar.gz"
-		tar czf dist/$output_name $bin
+		tar czf dist/"$output_name" $bin
 	fi
 
+	# shellcheck disable=SC2181
 	if [ $? -ne 0 ]; then
 		echo 'An error has occurred! Aborting the script execution...'
 		exit 1

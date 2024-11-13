@@ -103,6 +103,8 @@ download() {
 	info "If you would like to see a build for your configuration,"
 	info "please create an issue requesting a build for ${MAGENTA}${TARGET}${NO_COLOR}:"
 	info "${BOLD}${UNDERLINE}https://github.com/mskelton/${REPO_NAME:-$BINARY_NAME}/issues/new/${NO_COLOR}"
+
+	# shellcheck disable=2086
 	return $rc
 }
 
